@@ -1,0 +1,30 @@
+@import '../../style/variables.scss';
+
+.header{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  background-color: $bgc-second;
+  max-height: 100px;
+  padding: 20px 40px;
+  border-radius: 10px;
+  
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 32%;
+
+    &__input {
+      height: 30px;
+      background: none;
+      color: $accent-text-color;
+      border: none;
+      border-bottom: 1px solid #000;
+      outline: none;
+    }
+
+    &__input::placeholder {
+      color: $accent-text-color;
+    }
+  }
+}

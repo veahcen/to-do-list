@@ -1,1 +1,52 @@
-{}
+{
+  "users": [
+    {
+      "id": "6f3426a-cf5c-41e5-a464-f0db4ca15512",
+      "name": "admin"
+    }
+  ],
+  "todos": [
+    {
+      "id": "d99ffae6-dd2d-4a3e-a64a-e5c2147bf732",
+      "title": "ура",
+      "completed": false,
+      "inTrash": false
+    },
+    {
+      "id": "30b3a8ed-4c63-42fc-a906-4d8980e23710",
+      "title": "киллуа",
+      "completed": false,
+      "inTrash": false
+    },
+    {
+      "id": "497bd796-74ec-4aad-8954-aa5637bae3ac",
+      "title": "гон",
+      "completed": true,
+      "inTrash": false
+    },
+    {
+      "id": "5ea18cc7-3970-4856-b95e-d3de05a27b95",
+      "title": "я крутой",
+      "completed": false,
+      "inTrash": true
+    },
+    {
+      "id": "6f27214a-cf5c-42e5-a464-f0db5ca14412",
+      "title": "абв\\",
+      "completed": false,
+      "inTrash": false
+    },
+    {
+      "id": "eafb62ce-0941-4022-aafb-5cf297f949e8",
+      "title": "cbcb",
+      "completed": false,
+      "inTrash": false
+    },
+    {
+      "id": "42e131c9-0b9a-41fc-ac63-65c2446b5f00",
+      "title": "sdf",
+      "completed": false,
+      "inTrash": false
+    }
+  ]
+}

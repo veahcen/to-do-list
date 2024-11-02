@@ -1,0 +1,44 @@
+@import '../../../style/variables.scss';
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 400px;
+  background-color: $bgc-second;
+  transform: translate(-50%, -50%);
+}
+
+
+.form {
+  padding: 100px 70px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    color: $accent-text-color;
+  }
+  &__input {
+    background: none;
+    color: $accent-text-color;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+  }
+  &__input::placeholder {
+    color: $accent-text-color;
+  }
+  &__button {
+    padding: 15px 25px;
+    border: none;
+    color: $accent-text-color;
+    background-color: $blue;
+  }
+  &__button:hover {
+    transition: all 0.3s;
+    opacity: 0.5;
+  }
+}

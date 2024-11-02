@@ -1,0 +1,22 @@
+@import '../../../style/variables.scss';
+
+.myButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  color: $accent-text-color;
+  background-color: $blue;
+}
+
+.myButton:hover {
+  transition: all 0.4s;
+  opacity: 0.5;
+}
+
+.disable {
+  opacity: 0.5;
+}
