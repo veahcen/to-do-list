@@ -15,13 +15,11 @@ export const initialState: IUserState = {
 
 export const fetchUser = createAsyncThunk(
     'auth/fetchUser',
-    async ({ username, password }: { username: string; password: string }) => {
+    async ({ username }: { username: string}) => {
         const {request} = useHttp();
-        if (username === 'admin' && password === 'admin') {
+        
           return await request(`http://localhost:3001/users?name=${username}`);
-        } else {
-          alert('Неправильно введен логин или пароль')
-        }
+        
     }
 );
 

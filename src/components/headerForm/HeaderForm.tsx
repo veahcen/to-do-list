@@ -42,22 +42,25 @@ const HeaderForm: FC = () => {
 
   const onDeleteTodosFromTrash = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (filter === 'trash') {
-      dispatch(deleteTodos())
-      todos.forEach(item => {
-        if(item.inTrash) {
-          request(`http://localhost:3001/todos/${item.id}`, "DELETE")
+    let dialog:boolean = window.confirm('Вы действительно хотите переместить(удалить) все заданиея в(из) урну(ы)?');
+    if(dialog) {
+      if (filter === 'trash') {
+        dispatch(deleteTodos())
+        todos.forEach(item => {
+          if(item.inTrash) {
+            request(`http://localhost:3001/todos/${item.id}`, "DELETE")
+          }
+        });
+      } else {
+        dispatch(allTodosToTrash())
+        todos.forEach(item => {
+          const updateTodo = {
+            inTrash: true
+          }
+          request(`http://localhost:3001/todos/${item.id}`, "PATCH", JSON.stringify(updateTodo))
+        });
         }
-      });
-    } else {
-      dispatch(allTodosToTrash())
-      todos.forEach(item => {
-        const updateTodo = {
-          inTrash: true
-        }
-        request(`http://localhost:3001/todos/${item.id}`, "PATCH", JSON.stringify(updateTodo))
-      });
-      }
+    }
   }
 
   return (

@@ -8,10 +8,10 @@ import { ITodoState } from '../../types/types';
 
 const TodoLists: FC = () => {
   const buttons = [
-    {type: 'inProgress', name: 'ТЕКУЩИЕ ДЕЛА'},
-    {type: 'all', name: 'ВСЕ ДЕЛА'},
-    {type: 'checked', name: 'ВЫПОЛНЕННЫЕ ДЕЛА'},
-    {type: 'trash', name: 'КОРЗИНА'}];
+    {type: 'inProgress', name: 'ТЕКУЩИЕ ДЕЛА', quantity: 0},
+    {type: 'all', name: 'ВСЕ ДЕЛА', quantity: 0},
+    {type: 'checked', name: 'ВЫПОЛНЕННЫЕ ДЕЛА', quantity: 0},
+    {type: 'trash', name: 'КОРЗИНА', quantity: 0}];
   const todos = useSelector(state => state.todos.todos);
   const activeFiltr = useSelector(state => state.todos.todoFilter);
   const status = useSelector(state => state.todos.isLoadindStatus);
@@ -22,6 +22,19 @@ const TodoLists: FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  todos.forEach((todo) => {
+    if (!todo.completed && !todo.inTrash) {
+      buttons[0].quantity += 1;
+      buttons[1].quantity += 1;
+    } else if (todo.completed && !todo.inTrash) {
+      buttons[2].quantity += 1;
+      buttons[1].quantity += 1;
+    } else if (todo.inTrash) {
+      buttons[3].quantity += 1;
+      buttons[1].quantity += 1;
+    }
+  })
+
   const filteredTodos = todos.filter((todo) => {
     if (activeFiltr === "inProgress") return !todo.completed && !todo.inTrash;
     if (activeFiltr === "checked") return todo.completed && !todo.inTrash;
@@ -29,7 +42,7 @@ const TodoLists: FC = () => {
     return true;
   });
 
-  const todoRender = (todos: ITodoState[]) => {
+  const todoRender = (filteredTodos: ITodoState[]) => {
     if(filteredTodos.length === 0) {
       return (
         <h2 style={{color : '#9d989f', textAlign: 'center'}}>Дел не найдено</h2>
@@ -41,7 +54,7 @@ const TodoLists: FC = () => {
     })
   }
 
-  const elements: ReactNode = todoRender(todos);
+  const elements: ReactNode = todoRender(filteredTodos);
 
   return (
     <div className="lists">
@@ -55,7 +68,7 @@ const TodoLists: FC = () => {
               className={classButton+isActive}
               onClick={() => dispatch(changeFilter(item.type))}
              >
-              {item.name}
+              {item.name + ` (${item.quantity})`}
              </button>
           )
         })}

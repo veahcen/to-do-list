@@ -20,13 +20,20 @@ const LoginPage: FC = () => {
   const login = async (e: React.MouseEvent) => {
     e.preventDefault();
     
-    await dispatch(fetchUser({username: name, password: password}));
-    const isAuth = getCurrentUser();
-    if(isAuth) {
-      navigate('/');
+    if (name === 'admin' && password === 'admin') {
+      await dispatch(fetchUser({username: name}));
+      const isAuth = getCurrentUser();
+      if(isAuth) {
+        navigate('/');
+      }
+      setName('');
+      setPassword('');
+    } else {
+      alert('Неправильно введен логин или пароль');
+      setName('');
+      setPassword('');
     }
-    setName('');
-    setPassword('');
+    
   }
 
   return (

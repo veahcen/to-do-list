@@ -25,15 +25,18 @@ const TodoItem: FC<ITodoState> = (props) => {
   }
 
   const onClickInTrashHandler = (id: string) => {
-    dispatch(toggleTodoInTrash(id));
-    const updateTodo = {
-      inTrash: !inTrash
-    }
-    request(`http://localhost:3001/todos/${id}`, "PATCH", JSON.stringify(updateTodo))
-      .then((res) => {
-        console.log(res, 'Отправка успешна');
-      })
-      .catch(err => console.log(err));
+    let dialog:boolean = window.confirm('Вы действительно хотите переместить(достать) задание в(из) урну(ы)?');
+    if(dialog) {
+      dispatch(toggleTodoInTrash(id));
+      const updateTodo = {
+        inTrash: !inTrash
+      }
+      request(`http://localhost:3001/todos/${id}`, "PATCH", JSON.stringify(updateTodo))
+        .then((res) => {
+          console.log(res, 'Отправка успешна');
+        })
+        .catch(err => console.log(err));
+      }
   }
 
   return (
